@@ -8,7 +8,7 @@ incremental loading, Delta Lake, and automated orchestration.
 
 ## Architecture Overview
 
-<img width="1360" height="1480" alt="ecommerce_medallion_architecture" src="https://github.com/user-attachments/assets/c1604b3c-386f-45a0-a05c-057092348791" />
+images is pending i will upload 
 
 
 ---
