@@ -92,7 +92,8 @@ Indian e-commerce sales data with 15,000 orders:
 
 ### ADF Pipeline — PL_Ecommerce_Incremental_Load
 
-<img width="1425" height="495" alt="image" src="https://github.com/user-attachments/assets/d931a5a8-bf53-4e4b-8c63-f751fdb0666e" />
+<img width="1525" height="781" alt="image" src="https://github.com/user-attachments/assets/2c553552-94ea-4afa-afce-9be3ed8da17d" />
+
 
 
 #### Activity 1 — Lookup: LKP_GetWatermark
