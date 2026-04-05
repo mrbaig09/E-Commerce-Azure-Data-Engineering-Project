@@ -215,31 +215,16 @@ Only new rows aggregated → merged into Gold tables
 
 ## Databricks — Notebooks Run
 
-![Databricks Run](screenshots/09_databricks_notebook_run.png)
-<!--
-    SCREENSHOT TO ADD:
-    Databricks → open nb_bronze_to_silver notebook
-    Scroll to bottom of output showing:
-      "Bronze rows loaded: XXXX"
-      "Clean rows after transformation: XXXX"
-      "Silver MERGE complete"
-      "nb_bronze_to_silver DONE ✅"
-    Save as: screenshots/09_databricks_notebook_run.png
--->
+<img width="1919" height="750" alt="image" src="https://github.com/user-attachments/assets/4516e9c2-97bf-4d82-8f20-fd3981ef2183" />
+<img width="1918" height="872" alt="image" src="https://github.com/user-attachments/assets/92fe5869-1562-4fb9-96de-618b19b613f2" />
+<img width="1919" height="865" alt="image" src="https://github.com/user-attachments/assets/9b65afcc-fbb8-4d2e-b52f-75925e1d48c4" />
+
 
 ---
 
 ## Key Vault — Secrets Management
 
-![Key Vault](screenshots/10_key_vault_secrets.png)
-<!--
-    SCREENSHOT TO ADD:
-    Azure Portal → keyvaultecommercepro → Secrets
-    Should show:
-      - adls-account-key (Enabled)
-    This proves credentials are not hardcoded anywhere
-    Save as: screenshots/10_key_vault_secrets.png
--->
+<img width="1919" height="823" alt="image" src="https://github.com/user-attachments/assets/8139bcd7-b200-48e0-93dc-69511351f0d6" />
 
 ---
 
