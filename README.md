@@ -92,16 +92,8 @@ Indian e-commerce sales data with 15,000 orders:
 
 ### ADF Pipeline — PL_Ecommerce_Incremental_Load
 
-![ADF Pipeline Design](screenshots/02_adf_pipeline_design.png)
-<!--
-    SCREENSHOT TO ADD:
-    ADF Studio → Your pipeline (canvas view)
-    Should show all activities connected:
-    LKP_GetWatermark → CPY_SQL_To_Bronze → SP_UpdateWatermark
-    → IF_CheckRowsCopied → (True: SET_LoadStatus) (False: WEB_AlertOnNoData)
-    → NB_BronzeToSilver → NB_SilverToGold
-    Save as: screenshots/02_adf_pipeline_design.png
--->
+<img width="1425" height="495" alt="image" src="https://github.com/user-attachments/assets/d931a5a8-bf53-4e4b-8c63-f751fdb0666e" />
+
 
 #### Activity 1 — Lookup: LKP_GetWatermark
 - Reads last successful load date from watermark_table in SQL DB
