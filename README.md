@@ -170,14 +170,8 @@ Only new rows aggregated → merged into Gold tables
 
 ### Run 2 — Incremental Load (10 new rows)
 
-![ADF Run 2](screenshots/04_adf_run2_incremental.png)
-<!--
-    SCREENSHOT TO ADD:
-    ADF → Monitor → Pipeline runs → Click your second run
-    Same view but this time CPY_SQL_To_Bronze ran faster
-    (only 10 rows copied vs 5000 in run 1)
-    Save as: screenshots/04_adf_run2_incremental.png
--->
+<img width="1527" height="779" alt="image" src="https://github.com/user-attachments/assets/31a8ada7-8ce7-46ac-a06d-3e242ec6c6bb" />
+
 
 ---
 
