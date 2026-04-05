@@ -257,12 +257,12 @@ END;
 ---
 
 ## Project Structure
+```
 ecommerce-azure-data-engineering/
 │
 ├── README.md
-│
 ├── architecture/
-│   └── medallion_architecture.png
+│   └── medallion_architecture.svg
 │
 ├── adf_pipelines/
 │   └── PL_Ecommerce_Incremental_Load.json
@@ -292,6 +292,7 @@ ecommerce-azure-data-engineering/
 │   └── 10_key_vault_secrets.png
 │
 └── .gitignore
+```
 
 ---
 
