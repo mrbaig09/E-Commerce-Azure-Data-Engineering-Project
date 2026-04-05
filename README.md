@@ -164,7 +164,8 @@ Only new rows aggregated → merged into Gold tables
 
 ### Run 1 — Full Initial Load (5000 rows)
 
-<img width="1535" height="780" alt="image" src="https://github.com/user-attachments/assets/85df3e27-d255-4614-9e9b-8a73fd507820" />
+<img width="1525" height="781" alt="image" src="https://github.com/user-attachments/assets/07393488-f40c-4d0b-81d1-caf92fc490f8" />
+
 
 
 ### Run 2 — Incremental Load (10 new rows)
