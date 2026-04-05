@@ -133,3 +133,273 @@ Indian e-commerce sales data with 15,000 orders:
 ## Incremental Load Strategy
 
 ### ADF — Watermark Pattern
+
+Run 1:  watermark = 01-01-2023
+copies all 5000 rows
+updates watermark = 04-04-2026
+Run 2:  watermark = 04-04-2026
+copies only 10 new rows
+updates watermark = 05-04-2026
+Run 3:  watermark = 05-04-2026
+copies only next batch
+updates watermark = 06-04-2026
+
+### Databricks — Delta MERGE Pattern
+New rows arrive in Silver
+↓
+IF order_id already exists → UPDATE the record
+IF order_id is new        → INSERT the record
+Historical data never rewritten ✅
+
+### Gold — Control File Pattern
+After each Gold run → saves last_run_ts to control file
+Next run reads control file → filters Silver rows
+WHERE _silver_load_ts > last_run_ts
+Only new rows aggregated → merged into Gold tables
+
+---
+
+## ADF Pipeline — Successful Runs
+
+### Run 1 — Full Initial Load (5000 rows)
+
+<img width="1535" height="780" alt="image" src="https://github.com/user-attachments/assets/85df3e27-d255-4614-9e9b-8a73fd507820" />
+
+
+### Run 2 — Incremental Load (10 new rows)
+
+![ADF Run 2](screenshots/04_adf_run2_incremental.png)
+<!--
+    SCREENSHOT TO ADD:
+    ADF → Monitor → Pipeline runs → Click your second run
+    Same view but this time CPY_SQL_To_Bronze ran faster
+    (only 10 rows copied vs 5000 in run 1)
+    Save as: screenshots/04_adf_run2_incremental.png
+-->
+
+---
+
+## ADF Linked Services
+
+![Linked Services](screenshots/05_linked_services.png)
+<!--
+    SCREENSHOT TO ADD:
+    ADF Studio → Manage → Linked services
+    Should show:
+      - DataLakebronze (Azure Data Lake Storage Gen2)
+      - SqlDatabaseSource (Azure SQL Database)
+      - AzureDatabricksLinkedService (Azure Databricks)
+    Save as: screenshots/05_linked_services.png
+-->
+
+---
+
+## Storage — Bronze Container
+
+![Bronze Container](screenshots/06_bronze_container.png)
+<!--
+    SCREENSHOT TO ADD:
+    Azure Portal → ecommerceprojectstorage → Containers → bronze
+    Should show:
+      - First parquet file (292 KiB — full load)
+      - Second parquet file (4.62 KiB — 10 row incremental load)
+    This proves incremental loading is working
+    Save as: screenshots/06_bronze_container.png
+-->
+
+---
+
+## Storage — Silver Container
+
+![Silver Container](screenshots/07_silver_container.png)
+<!--
+    SCREENSHOT TO ADD:
+    Azure Portal → ecommerceprojectstorage → Containers → silver
+    Should show:
+      - _delta_log folder (proves Delta Lake format)
+      - part-00000-*.parquet files
+      - Partitioned folders (order_year= / order_month=)
+    Save as: screenshots/07_silver_container.png
+-->
+
+---
+
+## Storage — Gold Container
+
+![Gold Container](screenshots/08_gold_container.png)
+<!--
+    SCREENSHOT TO ADD:
+    Azure Portal → ecommerceprojectstorage → Containers → gold
+    Should show 3 folders:
+      - monthly_sales_by_category/
+      - payment_analysis/
+      - top_products/
+    Save as: screenshots/08_gold_container.png
+-->
+
+---
+
+## Databricks — Notebooks Run
+
+![Databricks Run](screenshots/09_databricks_notebook_run.png)
+<!--
+    SCREENSHOT TO ADD:
+    Databricks → open nb_bronze_to_silver notebook
+    Scroll to bottom of output showing:
+      "Bronze rows loaded: XXXX"
+      "Clean rows after transformation: XXXX"
+      "Silver MERGE complete"
+      "nb_bronze_to_silver DONE ✅"
+    Save as: screenshots/09_databricks_notebook_run.png
+-->
+
+---
+
+## Key Vault — Secrets Management
+
+![Key Vault](screenshots/10_key_vault_secrets.png)
+<!--
+    SCREENSHOT TO ADD:
+    Azure Portal → keyvaultecommercepro → Secrets
+    Should show:
+      - adls-account-key (Enabled)
+    This proves credentials are not hardcoded anywhere
+    Save as: screenshots/10_key_vault_secrets.png
+-->
+
+---
+
+## SQL Scripts
+
+### Watermark Table
+```sql
+CREATE TABLE watermark_table (
+    table_name     VARCHAR(100),
+    last_load_date VARCHAR(20)
+);
+
+INSERT INTO watermark_table
+VALUES ('ecommerce_sales', '01-01-2023');
+```
+
+### Stored Procedure
+```sql
+CREATE PROCEDURE sp_update_watermark
+    @last_load_date VARCHAR(20),
+    @table_name     VARCHAR(100)
+AS
+BEGIN
+    UPDATE watermark_table
+    SET last_load_date = @last_load_date
+    WHERE table_name = @table_name;
+END;
+```
+
+---
+
+## Project Structure
+ecommerce-azure-data-engineering/
+│
+├── README.md
+│
+├── architecture/
+│   └── medallion_architecture.png
+│
+├── adf_pipelines/
+│   └── PL_Ecommerce_Incremental_Load.json
+│
+├── databricks_notebooks/
+│   ├── nb_bronze_to_silver.py
+│   └── nb_silver_to_gold.py
+│
+├── sql_scripts/
+│   ├── 01_create_tables.sql
+│   ├── 02_create_watermark.sql
+│   └── 03_stored_procedure.sql
+│
+├── sample_data/
+│   └── ecommerce_sales_sample.csv
+│
+├── screenshots/
+│   ├── 01_resource_group.png
+│   ├── 02_adf_pipeline_design.png
+│   ├── 03_adf_run1_success.png
+│   ├── 04_adf_run2_incremental.png
+│   ├── 05_linked_services.png
+│   ├── 06_bronze_container.png
+│   ├── 07_silver_container.png
+│   ├── 08_gold_container.png
+│   ├── 09_databricks_notebook_run.png
+│   └── 10_key_vault_secrets.png
+│
+└── .gitignore
+
+---
+
+## How to Reproduce This Project
+
+### Prerequisites
+- Active Azure Subscription
+- Azure SQL Database + SQL Server
+- Azure Data Lake Storage Gen2
+- Azure Data Factory
+- Azure Databricks (Standard tier or above)
+- Azure Key Vault
+
+### Step 1 — SQL Setup
+```sql
+-- Run scripts in order
+-- sql_scripts/01_create_tables.sql
+-- sql_scripts/02_create_watermark.sql
+-- sql_scripts/03_stored_procedure.sql
+```
+
+### Step 2 — Storage Setup
+Create 3 containers in ADLS Gen2:
+- bronze
+- silver
+- gold
+
+### Step 3 — ADF Setup
+- Import pipeline JSON from adf_pipelines/
+- Create linked services for SQL and ADLS
+- Update connection strings with your resource names
+- Publish all
+
+### Step 4 — Databricks Setup
+- Upload notebooks from databricks_notebooks/
+- Add storage account key to cluster Spark config:
+- fs.azure.account.key.YOUR_STORAGE_ACCOUNT.dfs.core.windows.net YOUR_KEY
+
+### Step 5 — Run Pipeline
+- Trigger ADF pipeline manually for first run
+- Pipeline runs automatically daily at 1 AM IST
+- Databricks notebooks triggered automatically by ADF
+
+---
+
+## Pipeline Monitoring
+
+All pipeline runs monitored from ADF Monitor tab:
+
+- Green checkmark = activity succeeded
+- Duration visible per activity
+- Row counts visible in Copy activity output
+- Failed runs send alert via Web Activity
+
+---
+
+## Author
+
+**Your Name**
+Azure Data Engineer — 4 Years Experience
+
+- LinkedIn: your-linkedin-url
+- Email: your-email
+- Location: Pune, India
+
+---
+
+## License
+
+This project is open source and available under the MIT License
