@@ -8,14 +8,7 @@ incremental loading, Delta Lake, and automated orchestration.
 
 ## Architecture Overview
 
-![Architecture Diagram](architecture/medallion_architecture.png)
-<!-- 
-    SCREENSHOT TO ADD:
-    Take a full screenshot of the architecture diagram 
-    shown by Claude in this conversation (the SVG diagram
-    showing SQL → ADF → Bronze → Databricks → Silver → Gold)
-    Save as: architecture/medallion_architecture.png
--->
+![Uploading image.png…]()
 
 ---
 
