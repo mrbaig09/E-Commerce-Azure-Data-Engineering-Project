@@ -92,7 +92,8 @@ Indian e-commerce sales data with 15,000 orders:
 
 ### ADF Pipeline — PL_Ecommerce_Incremental_Load
 
-<img width="1525" height="781" alt="image" src="https://github.com/user-attachments/assets/2c553552-94ea-4afa-afce-9be3ed8da17d" />
+<img width="1248" height="471" alt="image" src="https://github.com/user-attachments/assets/ecf295f7-e446-4d8b-a434-046771e72f9b" />
+
 
 
 
@@ -192,46 +193,23 @@ Only new rows aggregated → merged into Gold tables
 
 ## Storage — Bronze Container
 
-![Bronze Container](screenshots/06_bronze_container.png)
-<!--
-    SCREENSHOT TO ADD:
-    Azure Portal → ecommerceprojectstorage → Containers → bronze
-    Should show:
-      - First parquet file (292 KiB — full load)
-      - Second parquet file (4.62 KiB — 10 row incremental load)
-    This proves incremental loading is working
-    Save as: screenshots/06_bronze_container.png
--->
+<img width="1919" height="818" alt="image" src="https://github.com/user-attachments/assets/0157c1f8-e9ce-4c6b-b32f-ec2932a14893" />
+
 
 ---
 
 ## Storage — Silver Container
 
-![Silver Container](screenshots/07_silver_container.png)
-<!--
-    SCREENSHOT TO ADD:
-    Azure Portal → ecommerceprojectstorage → Containers → silver
-    Should show:
-      - _delta_log folder (proves Delta Lake format)
-      - part-00000-*.parquet files
-      - Partitioned folders (order_year= / order_month=)
-    Save as: screenshots/07_silver_container.png
--->
+<img width="1919" height="790" alt="image" src="https://github.com/user-attachments/assets/93defc7c-3180-4d8b-a12d-ce95bbc0007e" />
+<img width="1919" height="800" alt="image" src="https://github.com/user-attachments/assets/39179f16-02b6-4268-9368-5e87b437db57" />
+
 
 ---
 
 ## Storage — Gold Container
 
-![Gold Container](screenshots/08_gold_container.png)
-<!--
-    SCREENSHOT TO ADD:
-    Azure Portal → ecommerceprojectstorage → Containers → gold
-    Should show 3 folders:
-      - monthly_sales_by_category/
-      - payment_analysis/
-      - top_products/
-    Save as: screenshots/08_gold_container.png
--->
+<img width="1919" height="788" alt="image" src="https://github.com/user-attachments/assets/0827bc54-d9d0-4d0e-8137-d8c12f394593" />
+
 
 ---
 
