@@ -349,17 +349,9 @@ All pipeline runs monitored from ADF Monitor tab:
 
 ---
 
-## Author
-
-**Your Name**
-Azure Data Engineer — 4 Years Experience
-
-- LinkedIn: your-linkedin-url
-- Email: your-email
+**Beig Ramiz**
+Data Engineer | 2+ Years Experience
+- 📧 ramizbeigx@gmail.com
+- 💼 [LinkedIn](https://www.linkedin.com/in/ramiz-beig/)
 - Location: Pune, India
 
----
-
-## License
-
-This project is open source and available under the MIT License
