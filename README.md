@@ -8,7 +8,7 @@ incremental loading, Delta Lake, and automated orchestration.
 
 ## Architecture Overview
 
-images is pending i will upload 
+<img width="1600" height="931" alt="image" src="https://github.com/user-attachments/assets/7abbf4e0-27ce-4905-988e-4eb849bf6a5a" />
 
 
 ---
@@ -178,16 +178,8 @@ Only new rows aggregated → merged into Gold tables
 
 ## ADF Linked Services
 
-![Linked Services](screenshots/05_linked_services.png)
-<!--
-    SCREENSHOT TO ADD:
-    ADF Studio → Manage → Linked services
-    Should show:
-      - DataLakebronze (Azure Data Lake Storage Gen2)
-      - SqlDatabaseSource (Azure SQL Database)
-      - AzureDatabricksLinkedService (Azure Databricks)
-    Save as: screenshots/05_linked_services.png
--->
+<img width="1919" height="822" alt="image" src="https://github.com/user-attachments/assets/d2afa4e6-78b2-4f9a-a185-d3d1aa45e688" />
+
 
 ---
 
