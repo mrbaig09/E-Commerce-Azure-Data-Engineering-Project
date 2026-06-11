@@ -163,13 +163,13 @@ Only new rows aggregated → merged into Gold tables
 
 ## ADF Pipeline — Successful Runs
 
-### Run 1 — Full Initial Load (5000 rows)
+### Run 1 — Full Historical Load (1.5 Million Records)
 
 <img width="1525" height="781" alt="image" src="https://github.com/user-attachments/assets/07393488-f40c-4d0b-81d1-caf92fc490f8" />
 
 
 
-### Run 2 — Incremental Load (10 new rows)
+### Run 2 — Incremental Load (50,000 New Records)
 
 <img width="1527" height="779" alt="image" src="https://github.com/user-attachments/assets/31a8ada7-8ce7-46ac-a06d-3e242ec6c6bb" />
 
