@@ -33,9 +33,10 @@ incremental loading, Delta Lake, and automated orchestration.
 
 ---
 
+
 ## Dataset
 
-Indian e-commerce sales data with 15,000 orders:
+Large-scale Indian e-commerce sales data processing approximately 1.5 million (15 lakh) records daily through an automated incremental Azure data pipeline.
 
 | Column | Description |
 |---|---|
@@ -136,14 +137,16 @@ Indian e-commerce sales data with 15,000 orders:
 
 ### ADF — Watermark Pattern
 
-Run 1:  watermark = 01-01-2023
-copies all 5000 rows
+Run 1: watermark = 01-01-2023
+copies 1.5 million historical records
 updates watermark = 04-04-2026
-Run 2:  watermark = 04-04-2026
-copies only 10 new rows
+
+Run 2: watermark = 04-04-2026
+copies 50,000 new records
 updates watermark = 05-04-2026
-Run 3:  watermark = 05-04-2026
-copies only next batch
+
+Run 3: watermark = 05-04-2026
+copies next incremental batch
 updates watermark = 06-04-2026
 
 ### Databricks — Delta MERGE Pattern
@@ -342,7 +345,7 @@ All pipeline runs monitored from ADF Monitor tab:
 ---
 
 **Beig Ramiz**
-Data Engineer | 2+ Years Experience
+Data Engineer | 2.6+ Years Experience
 - 📧 ramizbeigx@gmail.com
 - 💼 [LinkedIn](https://www.linkedin.com/in/ramiz-beig/)
 - Location: Pune, India
